@@ -19,7 +19,6 @@ export const AddTodoAction = Todo => (dispatch, getState) => {
 //       payload: todos.map(t => t.id !== Todo.id)
 //     })
 //   }
-  
 
 export const removeTodoAction = Todo => (dispatch, getState) => {
   const {

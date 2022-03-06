@@ -8,7 +8,6 @@ function App () {
   const todo = useSelector(state => state.todo) // access todo
   const { todos } = todo;
   const [todoList, setTodoList] = useState()
-  console.log(todoList, todos)
   const handleSubmit = e => {
     e.preventDefault()
     dispatch(AddTodoAction(todoList))
@@ -25,6 +24,7 @@ function App () {
       <form onSubmit={handleSubmit}>
         <input
           placeholder='Enter a Todo Activity'
+          value={todoList}
           onChange={(e) => {
             setTodoList(e.target.value)
            
