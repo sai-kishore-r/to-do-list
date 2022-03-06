@@ -4,14 +4,14 @@ export const todoReducer = (state = { todos: [] }, action) => {
       return {
         todos: action.payload
       }
-    case 'EDIT_TODO':
-      return {
-        todos: action.payload
-      }
-    // case 'REMOVE_TODO':
+    // case 'EDIT_TODO':
     //   return {
     //     todos: action.payload
     //   }
+    case 'REMOVE_TODO':
+      return {
+        todos: action.payload
+      }
     default:
       return state
   }
