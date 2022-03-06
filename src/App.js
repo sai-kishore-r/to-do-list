@@ -1,25 +1,63 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { AddTodoAction, removeTodoAction,editTodoAction } from './action/todoAction'
+import './App.css'
 
-function App() {
+function App () {
+  const dispatch = useDispatch()
+  const todo = useSelector(state => state.todo) // access todo
+  const { todos } = todo;
+  const [todoList, setTodoList] = useState()
+  console.log(todoList, todos)
+  const handleSubmit = e => {
+    e.preventDefault()
+    dispatch(AddTodoAction(todoList))
+  }
+  function removeHandler(t) {     
+    dispatch(removeTodoAction(t))
+  }
+  // function editHandler(t){
+  //   dispatch(editTodoAction(t))
+  // }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <h1> TODO</h1>
+      <form onSubmit={handleSubmit}>
+        <input
+          placeholder='Enter a Todo Activity'
+          onChange={(e) => {
+            setTodoList(e.target.value)
+           
+          }}
+        />
+        <button type='submit'>Go</button>
+      </form>
+      <ul>
+        {/* checking if its empty  */}
+        {todos &&
+          todos.map(t => (
+            <li
+              key={t.id}
+              style={{
+                border: '1px solid black',
+                width: '450px',
+                margin: '10px',
+                alignItems: 'center',
+                display: 'flex'
+              }}
+            >
+              <span style={{ margin: '10px' }}>{t.Todo}</span>
+              {/* <button
+               onClick={()=> editHandler(t)}
+               >Edit</button> */}
+              <button
+               onClick={()=> removeHandler(t)}
+               >Delete</button>
+            </li>
+          ))}
+      </ul>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
