@@ -6,12 +6,12 @@ const reducer = combineReducers({
   todo : todoReducer
 })
 
-const initialState = {}
+// const initialState = {}
 const middleware = [thunk]
 
 const store = createStore(
     reducer, 
-    initialState,
+    // initialState,
     composeWithDevTools(applyMiddleware(...middleware))) ///spread operator is must
 
 export default store
